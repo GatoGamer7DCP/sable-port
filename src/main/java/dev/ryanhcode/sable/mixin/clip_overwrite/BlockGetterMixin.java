@@ -116,10 +116,6 @@ public interface BlockGetterMixin {
             final Vector3dc from = pose.transformPositionInverse(JOMLConversion.toJOML(clipContext.getFrom()));
             final Vector3dc to = pose.transformPositionInverse(JOMLConversion.toJOML(clipContext.getTo()));
 
-            if (helper.getContaining(level, from) != subLevel)
-                continue; // we projected the ray inward, but the start is not in the plot. something is weird.
-
-
             final ClipContext subClipContext = new ClipContext(JOMLConversion.toMojang(from), JOMLConversion.toMojang(to), clipContext.block, clipContext.fluid, clipContext.collisionContext);
             final BlockHitResult subResult = originalClip(subLevel.getLevel(), subClipContext);
             final double distance = subResult.getLocation().distanceTo(subClipContext.getFrom());
